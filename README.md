@@ -4,7 +4,7 @@ This package provides [Go](https://go.dev/) bindings for various [FSEconomy](htt
 
 **Important Links**
 
-* Documentation: tbd
+* Documentation: https://pkg.go.dev/github.com/fseconomy/fseconomy-go
 * GitHub: https://github.com/fseconomy/fseconomy-go
 * Bug Tracker: https://github.com/fseconomy/fseconomy-go/issues
 
