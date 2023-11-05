@@ -42,3 +42,48 @@ func TestNewWithEnviron(t *testing.T) {
 		t.Fatalf(`All keys expected to be %q`, testKey)
 	}
 }
+
+// TestSetAccessKey calls SetAccessKey for an empty context and verifies the key has been set correctly
+func TestSetAccessKey(t *testing.T) {
+	f, err := New()
+	if err != nil {
+		t.Fatalf(`Unexpected error: %v`, err)
+	}
+	err = SetAccessKey(f, testKey)
+	if err != nil {
+		t.Fatalf(`Unexpected error: %v`, err)
+	}
+	if f.AccessKey != testKey {
+		t.Fatalf(`Access key expected to be %q, got %q instead`, testKey, f.AccessKey)
+	}
+}
+
+// TestSetServiceKey calls SetServiceKey for an empty context and verifies the key has been set correctly
+func TestSetServiceKey(t *testing.T) {
+	f, err := New()
+	if err != nil {
+		t.Fatalf(`Unexpected error: %v`, err)
+	}
+	err = SetServiceKey(f, testKey)
+	if err != nil {
+		t.Fatalf(`Unexpected error: %v`, err)
+	}
+	if f.ServiceKey != testKey {
+		t.Fatalf(`Service key expected to be %q, got %q instead`, testKey, f.ServiceKey)
+	}
+}
+
+// TestSetUserKey calls SetUserKey for an empty context and verifies the key has been set correctly
+func TestSetUserKey(t *testing.T) {
+	f, err := New()
+	if err != nil {
+		t.Fatalf(`Unexpected error: %v`, err)
+	}
+	err = SetUserKey(f, testKey)
+	if err != nil {
+		t.Fatalf(`Unexpected error: %v`, err)
+	}
+	if f.UserKey != testKey {
+		t.Fatalf(`User key expected to be %q, got %q instead`, testKey, f.UserKey)
+	}
+}

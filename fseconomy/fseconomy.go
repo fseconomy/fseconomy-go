@@ -12,6 +12,33 @@ type Fse struct {
 	UserKey    string
 }
 
+// SetServiceKey sets the service key for a Fse instance
+func SetServiceKey(context *Fse, ServiceKey string) error {
+	if key.ValidateKey(ServiceKey) {
+		context.ServiceKey = ServiceKey
+		return nil
+	}
+	return ErrBadKey
+}
+
+// SetUserKey sets the user key for a Fse instance
+func SetUserKey(context *Fse, UserKey string) error {
+	if key.ValidateKey(UserKey) {
+		context.UserKey = UserKey
+		return nil
+	}
+	return ErrBadKey
+}
+
+// SetAccessKey sets the read access key for a Fse instance
+func SetAccessKey(context *Fse, AccessKey string) error {
+	if key.ValidateKey(AccessKey) {
+		context.AccessKey = AccessKey
+		return nil
+	}
+	return ErrBadKey
+}
+
 // New returns a pointer to a new Fse instance
 func New() (*Fse, error) {
 	context := &Fse{
@@ -45,31 +72,4 @@ func New() (*Fse, error) {
 	}
 
 	return context, nil
-}
-
-// SetServiceKey sets the service key for a Fse instance
-func SetServiceKey(context *Fse, ServiceKey string) error {
-	if key.ValidateKey(ServiceKey) {
-		context.ServiceKey = ServiceKey
-		return nil
-	}
-	return ErrBadKey
-}
-
-// SetUserKey sets the user key for a Fse instance
-func SetUserKey(context *Fse, UserKey string) error {
-	if key.ValidateKey(UserKey) {
-		context.UserKey = UserKey
-		return nil
-	}
-	return ErrBadKey
-}
-
-// SetAccessKey sets the read access key for a Fse instance
-func SetAccessKey(context *Fse, AccessKey string) error {
-	if key.ValidateKey(AccessKey) {
-		context.AccessKey = AccessKey
-		return nil
-	}
-	return ErrBadKey
 }
