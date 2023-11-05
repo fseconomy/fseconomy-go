@@ -1,7 +1,7 @@
 package fseconomy
 
 import (
-	"github.com/fseconomy/fseconomy-go/internal/key"
+	"github.com/fseconomy/fseconomy-go/internal/apikey"
 )
 
 // Fse is the top level FSEconomy service context
@@ -23,7 +23,7 @@ func New() *Fse {
 
 // setServiceKey sets the service key for a Fse instance
 func setServiceKey(context *Fse, ServiceKey string) error {
-	if key.validateKey(ServiceKey) {
+	if apikey.ValidateKey(ServiceKey) {
 		context.ServiceKey = ServiceKey
 		return nil
 	}
@@ -32,7 +32,7 @@ func setServiceKey(context *Fse, ServiceKey string) error {
 
 // setUserKey sets the user key for a Fse instance
 func setUserKey(context *Fse, UserKey string) error {
-	if key.validateKey(UserKey) {
+	if apikey.ValidateKey(UserKey) {
 		context.UserKey = UserKey
 		return nil
 	}
@@ -41,7 +41,7 @@ func setUserKey(context *Fse, UserKey string) error {
 
 // setAccessKey sets the read access key for a Fse instance
 func setAccessKey(context *Fse, AccessKey string) error {
-	if key.validateKey(AccessKey) {
+	if apikey.ValidateKey(AccessKey) {
 		context.AccessKey = AccessKey
 		return nil
 	}
