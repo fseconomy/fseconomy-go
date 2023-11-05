@@ -1,2 +1,13 @@
-# fseconomy-go
-Go  Bindings for FSEconomy
+# FSEconomy Go Bindings
+
+This package provides [Go](https://go.dev/) bindings for various [FSEconomy](https://www.fseconomy.net) APIs.
+
+**Important Links**
+
+* Documentation: https://pkg.go.dev/github.com/fseconomy/fseconomy-go
+* GitHub: https://github.com/fseconomy/fseconomy-go
+* Bug Tracker: https://github.com/fseconomy/fseconomy-go/issues
+
+## Usage
+
+tbd
