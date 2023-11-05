@@ -10,6 +10,8 @@ type Fse struct {
 	ServiceKey string
 	AccessKey  string
 	UserKey    string
+	UserName   string
+	UserToken  string
 }
 
 // SetServiceKey sets the service key for a Fse instance
@@ -45,6 +47,8 @@ func New() (*Fse, error) {
 		ServiceKey: "",
 		AccessKey:  "",
 		UserKey:    "",
+		UserName:   "",
+		UserToken:  "",
 	}
 
 	val, ok := os.LookupEnv("FSE_SERVICE_KEY")
