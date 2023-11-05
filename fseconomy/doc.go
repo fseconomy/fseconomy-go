@@ -21,5 +21,12 @@ This is the default way of working:
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to create new fseconomy instance: %v\n", err)
 	}
+
+Alternatively, keys can be set explicitly using the corresponding setter function:
+
+	f, err := fseconomy.New()
+	err = fseconomy.SetServiceKey(f, "service key string goes here")
+	err = fseconomy.SetUserKey(f, "user key string goes here")
+	err = fseconomy.SetAccessKey(f, "access key string goes here")
 */
 package fseconomy
