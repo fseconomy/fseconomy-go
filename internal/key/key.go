@@ -1,8 +1,8 @@
-package apikey
+package key
 
 import "encoding/hex"
 
-// ValidateKey checks if a apikey string represents a valid FSEconomy API apikey.
+// ValidateKey checks if a key string represents a valid FSEconomy API key.
 func ValidateKey(key string) bool {
 	decoded, err := hex.DecodeString(key)
 	if err != nil {
