@@ -1,6 +1,8 @@
 package api
 
-import "github.com/fseconomy/fseconomy-go/fse"
+import (
+	"github.com/fseconomy/fseconomy-go/exceptions"
+)
 
 const AuthApi string = "https://server.fseconomy.net/rest/fse/api"
 
@@ -24,5 +26,5 @@ func GetAuthService(name string) (*Service, error) {
 	if ok {
 		return &elem, nil
 	}
-	return nil, fse.ErrInvalidService
+	return nil, exceptions.InvalidServiceError
 }

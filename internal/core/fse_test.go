@@ -1,4 +1,4 @@
-package fse
+package core
 
 import (
 	"os"
@@ -25,7 +25,7 @@ func TestNewNoEnviron(t *testing.T) {
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	if (f.AccessKey != "") || (f.ServiceKey != "") || (f.UserKey != "") {
+	if (f.accessKey != "") || (f.serviceKey != "") || (f.userKey != "") {
 		t.Fatalf(`All keys expected to be empty strings`)
 	}
 }
@@ -38,7 +38,7 @@ func TestNewWithEnviron(t *testing.T) {
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	if (f.AccessKey != testKey) || (f.ServiceKey != testKey) || (f.UserKey != testKey) {
+	if (f.accessKey != testKey) || (f.serviceKey != testKey) || (f.userKey != testKey) {
 		t.Fatalf(`All keys expected to be %q`, testKey)
 	}
 }
@@ -53,8 +53,8 @@ func TestSetAccessKey(t *testing.T) {
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	if f.AccessKey != testKey {
-		t.Fatalf(`Access key expected to be %q, got %q instead`, testKey, f.AccessKey)
+	if f.accessKey != testKey {
+		t.Fatalf(`Access key expected to be %q, got %q instead`, testKey, f.accessKey)
 	}
 }
 
@@ -68,8 +68,8 @@ func TestSetServiceKey(t *testing.T) {
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	if f.ServiceKey != testKey {
-		t.Fatalf(`Service key expected to be %q, got %q instead`, testKey, f.ServiceKey)
+	if f.serviceKey != testKey {
+		t.Fatalf(`Service key expected to be %q, got %q instead`, testKey, f.serviceKey)
 	}
 }
 
@@ -83,37 +83,7 @@ func TestSetUserKey(t *testing.T) {
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	if f.UserKey != testKey {
-		t.Fatalf(`User key expected to be %q, got %q instead`, testKey, f.UserKey)
-	}
-}
-
-func TestWithAccessKey(t *testing.T) {
-	f, err := New(WithAccessKey(testKey))
-	if err != nil {
-		t.Fatalf(`Unexpected error: %v`, err)
-	}
-	if f.AccessKey != testKey {
-		t.Fatalf(`Access key expected to be %q, got %q instead`, testKey, f.AccessKey)
-	}
-}
-
-func TestWithServiceKey(t *testing.T) {
-	f, err := New(WithServiceKey(testKey))
-	if err != nil {
-		t.Fatalf(`Unexpected error: %v`, err)
-	}
-	if f.ServiceKey != testKey {
-		t.Fatalf(`Access key expected to be %q, got %q instead`, testKey, f.AccessKey)
-	}
-}
-
-func TestWithUserKey(t *testing.T) {
-	f, err := New(WithUserKey(testKey))
-	if err != nil {
-		t.Fatalf(`Unexpected error: %v`, err)
-	}
-	if f.UserKey != testKey {
-		t.Fatalf(`Access key expected to be %q, got %q instead`, testKey, f.AccessKey)
+	if f.userKey != testKey {
+		t.Fatalf(`User key expected to be %q, got %q instead`, testKey, f.userKey)
 	}
 }
