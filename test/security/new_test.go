@@ -52,6 +52,44 @@ func TestNewEnvironBad(t *testing.T) {
 	}
 }
 
-func TestNewInvalid(t *testing.T) {
+func TestNewWithServiceKeyGood(t *testing.T) {
+	_, err := security.New(security.WithServiceKey(testKeyGood))
+	if err != nil {
+		t.Errorf("Unexpected error: %v", err)
+	}
+}
 
+func TestNewWithServiceKeyBad(t *testing.T) {
+	_, err := security.New(security.WithServiceKey(testKeyBad))
+	if err == nil {
+		t.Errorf("Expected invalid key error, got: %v", err)
+	}
+}
+
+func TestNewWithUserKeyGood(t *testing.T) {
+	_, err := security.New(security.WithUserKey(testKeyGood))
+	if err != nil {
+		t.Errorf("Unexpected error: %v", err)
+	}
+}
+
+func TestNewWithUserKeyBad(t *testing.T) {
+	_, err := security.New(security.WithUserKey(testKeyBad))
+	if err == nil {
+		t.Errorf("Expected invalid key error, got: %v", err)
+	}
+}
+
+func TestNewWithAccessKeyGood(t *testing.T) {
+	_, err := security.New(security.WithAccessKey(testKeyGood))
+	if err != nil {
+		t.Errorf("Unexpected error: %v", err)
+	}
+}
+
+func TestNewWithAccessKeyBad(t *testing.T) {
+	_, err := security.New(security.WithAccessKey(testKeyBad))
+	if err == nil {
+		t.Errorf("Expected invalid key error, got: %v", err)
+	}
 }
