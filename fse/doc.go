@@ -1,5 +1,5 @@
 /*
-Package fseconomy is the core FSEconomy SDK package.
+Package fse is the core FSEconomy SDK package.
 
 # Configuring Credentials
 
@@ -17,16 +17,20 @@ FSEconomy API keys can be provided by setting these environment variables:
 
 This is the default way of working:
 
-	f, err := fseconomy.New()
+	f, err := fse.New()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "failed to create new fseconomy instance: %v\n", err)
+		fmt.Fprintf(os.Stderr, "failed to create new fse instance: %v\n", err)
 	}
+
+If you need to pass keys explicitly, you can do so when creating the new context:
+
+	f, err := fse.New(fse.WithServiceKey("service key here"))
 
 Alternatively, keys can be set explicitly using the corresponding setter function:
 
-	f, err := fseconomy.New()
-	err = fseconomy.SetServiceKey(f, "service key string goes here")
-	err = fseconomy.SetUserKey(f, "user key string goes here")
-	err = fseconomy.SetAccessKey(f, "access key string goes here")
+	f, err := fse.New()
+	err = f.SetServiceKey("service key string goes here")
+	err = f.SetUserKey("user key string goes here")
+	err = f.SetAccessKey("access key string goes here")
 */
-package fseconomy
+package fse

@@ -1,4 +1,4 @@
-package fseconomy
+package fse
 
 import (
 	"os"
@@ -49,7 +49,7 @@ func TestSetAccessKey(t *testing.T) {
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	err = SetAccessKey(f, testKey)
+	err = f.SetAccessKey(testKey)
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
@@ -64,7 +64,7 @@ func TestSetServiceKey(t *testing.T) {
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	err = SetServiceKey(f, testKey)
+	err = f.SetServiceKey(testKey)
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
@@ -79,11 +79,41 @@ func TestSetUserKey(t *testing.T) {
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	err = SetUserKey(f, testKey)
+	err = f.SetUserKey(testKey)
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
 	if f.UserKey != testKey {
 		t.Fatalf(`User key expected to be %q, got %q instead`, testKey, f.UserKey)
+	}
+}
+
+func TestWithAccessKey(t *testing.T) {
+	f, err := New(WithAccessKey(testKey))
+	if err != nil {
+		t.Fatalf(`Unexpected error: %v`, err)
+	}
+	if f.AccessKey != testKey {
+		t.Fatalf(`Access key expected to be %q, got %q instead`, testKey, f.AccessKey)
+	}
+}
+
+func TestWithServiceKey(t *testing.T) {
+	f, err := New(WithServiceKey(testKey))
+	if err != nil {
+		t.Fatalf(`Unexpected error: %v`, err)
+	}
+	if f.ServiceKey != testKey {
+		t.Fatalf(`Access key expected to be %q, got %q instead`, testKey, f.AccessKey)
+	}
+}
+
+func TestWithUserKey(t *testing.T) {
+	f, err := New(WithUserKey(testKey))
+	if err != nil {
+		t.Fatalf(`Unexpected error: %v`, err)
+	}
+	if f.UserKey != testKey {
+		t.Fatalf(`Access key expected to be %q, got %q instead`, testKey, f.AccessKey)
 	}
 }

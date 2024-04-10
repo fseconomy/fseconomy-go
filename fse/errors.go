@@ -1,4 +1,4 @@
-package fseconomy
+package fse
 
 import (
 	"errors"
