@@ -19,12 +19,12 @@ This is the default way of working:
 
 	s, err := security.New()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "failed to create new fse instance: %v\n", err)
+		fmt.Fprintf(os.Stderr, "failed to create new fse security instance: %v\n", err)
 	}
 
 If you need to pass keys explicitly, you can do so when creating the new context:
 
-	a, err := security.New(security.WithServiceKey("service key here"))
+	s, err := security.New(security.WithServiceKey("service key here"))
 
 Alternatively, keys can be set explicitly using the corresponding setter function:
 
