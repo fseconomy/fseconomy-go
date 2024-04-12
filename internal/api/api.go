@@ -10,3 +10,12 @@ type Service struct {
 	Method string
 	Params []string
 }
+
+func (service *Service) ValidateParams(params map[string]string) bool {
+	for _, param := range service.Params {
+		if _, ok := params[param]; !ok {
+			return false
+		}
+	}
+	return true
+}
