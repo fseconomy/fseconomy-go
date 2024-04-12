@@ -1,7 +1,6 @@
 package security
 
 import (
-	"github.com/fseconomy/fseconomy-go/internal/api"
 	"reflect"
 	"testing"
 )
@@ -16,7 +15,7 @@ func TestGetAuthService(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		want    *api.Service
+		want    *AuthService
 		wantErr bool
 	}{
 		{"login service", args{"login"}, &loginService, false},

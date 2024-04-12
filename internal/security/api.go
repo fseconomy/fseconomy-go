@@ -7,22 +7,30 @@ import (
 
 const AuthApi string = "https://server.fseconomy.net/rest/fse/api"
 
-var AuthServices = map[string]api.Service{
+type AuthService struct {
+	api.Service
+}
+
+var AuthServices = map[string]AuthService{
 	"login": {
-		Api:    AuthApi,
-		Url:    "/login",
-		Method: "POST",
-		Params: []string{"username", "password"},
+		Service: api.Service{
+			Api:    AuthApi,
+			Url:    "/login",
+			Method: "POST",
+			Params: []string{"username", "password"},
+		},
 	},
 	"logout": {
-		Api:    AuthApi,
-		Url:    "/logout",
-		Method: "POST",
-		Params: []string{"authtoken", "username"},
+		Service: api.Service{
+			Api:    AuthApi,
+			Url:    "/logout",
+			Method: "POST",
+			Params: []string{"authtoken", "username"},
+		},
 	},
 }
 
-func GetAuthService(name string) (*api.Service, error) {
+func GetAuthService(name string) (*AuthService, error) {
 	elem, ok := AuthServices[name]
 	if ok {
 		return &elem, nil
