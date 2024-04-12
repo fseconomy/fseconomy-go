@@ -21,7 +21,7 @@ func (context *Fse) SetServiceKey(serviceKey string) error {
 		context.serviceKey = serviceKey
 		return nil
 	}
-	return exceptions.BadKeyError
+	return exceptions.BadFseKeyError
 }
 
 // SetUserKey sets the user key for a Fse instance
@@ -30,7 +30,7 @@ func (context *Fse) SetUserKey(userKey string) error {
 		context.userKey = userKey
 		return nil
 	}
-	return exceptions.BadKeyError
+	return exceptions.BadFseKeyError
 }
 
 // SetAccessKey sets the read access key for a Fse instance
@@ -39,7 +39,7 @@ func (context *Fse) SetAccessKey(accessKey string) error {
 		context.accessKey = accessKey
 		return nil
 	}
-	return exceptions.BadKeyError
+	return exceptions.BadFseKeyError
 }
 
 func (context *Fse) SetKeysFromEnv() error {

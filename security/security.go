@@ -1,43 +1,42 @@
 package security
 
-import "github.com/fseconomy/fseconomy-go/internal/core"
+import (
+	"github.com/fseconomy/fseconomy-go/internal/security"
+)
 
-type FseSec struct {
-	core.Fse
+type Security struct {
+	security.Security
 }
 
-// WithServiceKey sets the service key
-func WithServiceKey(serviceKey string) func(*FseSec) error {
-	return func(a *FseSec) error {
-		return a.SetServiceKey(serviceKey)
+// WithSecretKey sets the secret key
+func WithSecretKey(secretKey string) func(*Security) error {
+	return func(a *Security) error {
+		return a.SetSecretKeyFromString(secretKey)
 	}
 }
 
-// WithAccessKey sets the access key
-func WithAccessKey(accessKey string) func(*FseSec) error {
-	return func(a *FseSec) error {
-		return a.SetAccessKey(accessKey)
-	}
-}
-
-// WithUserKey sets the user key
-func WithUserKey(userKey string) func(*FseSec) error {
-	return func(a *FseSec) error {
-		return a.SetUserKey(userKey)
+// WithSecretIv sets the initialization vector
+func WithSecretIv(secretIv string) func(*Security) error {
+	return func(a *Security) error {
+		return a.SetSecretIvFromString(secretIv)
 	}
 }
 
 // New returns a new Fseconomy security object
-func New(options ...func(*FseSec) error) (*FseSec, error) {
-	auth := &FseSec{}
-	err := auth.SetKeysFromEnv()
+func New(options ...func(*Security) error) (*Security, error) {
+	sec := &Security{}
+	err := sec.SetSecretKeyFromEnv()
+	if err != nil {
+		return nil, err
+	}
+	err = sec.SetSecretIvFromEnv()
 	if err != nil {
 		return nil, err
 	}
 	for _, option := range options {
-		if err := option(auth); err != nil {
+		if err := option(sec); err != nil {
 			return nil, err
 		}
 	}
-	return auth, nil
+	return sec, nil
 }

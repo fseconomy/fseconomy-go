@@ -7,11 +7,11 @@ import (
 )
 
 func Query(context *core.Fse, service *Service) {
-	path, err := url.JoinPath(service.api, service.url)
+	path, err := url.JoinPath(service.Api, service.Url)
 	if err != nil {
 		return
 	}
-	req, err := http.NewRequest(service.method, path, nil)
+	req, err := http.NewRequest(service.Method, path, nil)
 	client := http.Client{}
 	_, _ = client.Do(req)
 }
