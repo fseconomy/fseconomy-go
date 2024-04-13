@@ -16,4 +16,7 @@ var (
 
 	// InvalidServiceError service doesn't exist
 	InvalidServiceError = errors.New("service does not exist")
+
+	// ServerMaintenanceError FSEconomy server is in maintenance
+	ServerMaintenanceError = errors.New("server is in maintenance")
 )
