@@ -12,9 +12,10 @@ import (
 const maintenance = "Currently Closed for Maintenance"
 
 type QueryResult struct {
-	status     int
-	byteData   []byte
-	stringData string
+	status      int
+	contentType string
+	byteData    []byte
+	stringData  string
 }
 
 // RawQuery assembles and executes the http request to a service, returning a result object
@@ -88,5 +89,9 @@ func (service *Service) RawQuery(urlParams map[string]string, formParams map[str
 	if strings.Contains(result.stringData, maintenance) {
 		return nil, exceptions.ServerMaintenanceError
 	}
+
+	// make sure we know the content type downstream
+	result.contentType = resp.Header.Get("Content-Type")
+
 	return &result, nil
 }
