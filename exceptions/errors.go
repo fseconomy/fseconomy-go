@@ -31,4 +31,10 @@ var (
 
 	// UserNotLoggedInError the security context doesn't hold a logged-in user
 	UserNotLoggedInError = errors.New("user not logged in")
+
+	// FseDataKeyError could not find a valid data access key (user or access key)
+	FseDataKeyError = errors.New("could not find a valid data access key (user or access key)")
+
+	// FseAuthKeyError could not find a valid authentication key (user or service key)
+	FseAuthKeyError = errors.New("could not find a valid authentication key (user or service key)")
 )
