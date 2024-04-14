@@ -1,6 +1,8 @@
 # FSEconomy Go Bindings
 
 ![Build and Test State](https://github.com/fseconomy/fseconomy-go/actions/workflows/go.yml/badge.svg?event=push)
+[![Go Reference](https://pkg.go.dev/badge/github.com/fseconomy/fseconomy-go.svg)](https://pkg.go.dev/github.com/fseconomy/fseconomy-go)
+![MIT License](https://img.shields.io/badge/license-MIT-green.svg)
 
 This package provides [Go](https://go.dev/) bindings for various [FSEconomy](https://www.fseconomy.net) APIs.
 
@@ -25,6 +27,31 @@ go get -U github.com/fseconomy/fseconomy-go
 ```
 
 ## Usage
+
+### Data Feed API
+
+```go
+package main
+
+import (
+	"github.com/fseconomy/fseconomy-go/data"
+	"log"
+)
+
+func main() {
+	d, err := data.New(data.WithUserKey("my user key here"))
+	if err != nil {
+		log.Fatalf(`failed to create FSEconomy data feed context: %v\n`, err)
+	}
+	
+	// retrieve data feeds
+	configs, err := d.AircraftConfigs()
+	status, err := d.AircraftStatusByRegistration("D-ESTE")
+	
+	log.Printf("loaded number of configs: %d", len(configs))
+	log.Printf("status for D-ESTE: %v", status)
+}
+```
 
 ### Security & Authentication API
 

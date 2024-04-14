@@ -37,4 +37,7 @@ var (
 
 	// FseAuthKeyError could not find a valid authentication key (user or service key)
 	FseAuthKeyError = errors.New("could not find a valid authentication key (user or service key)")
+
+	// ServerStatusError server responded with unexpected status code
+	ServerStatusError = errors.New("server responded with unexpected status code")
 )
