@@ -22,6 +22,22 @@ func WithSecretIv(secretIv string) func(*Security) error {
 	}
 }
 
+// WithUser sets the user name
+func WithUser(username string) func(*Security) error {
+	return func(a *Security) error {
+		a.SetUserName(username)
+		return nil
+	}
+}
+
+// WithToken sets the auth token
+func WithToken(token string) func(*Security) error {
+	return func(a *Security) error {
+		a.SetAuthToken(token)
+		return nil
+	}
+}
+
 // New returns a new Fseconomy security object
 func New(options ...func(*Security) error) (*Security, error) {
 	sec := &Security{}

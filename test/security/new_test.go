@@ -110,3 +110,23 @@ func TestNewWithSecretIv(t *testing.T) {
 		})
 	}
 }
+
+func TestNewWithUser(t *testing.T) {
+	s, err := security.New(security.WithUser("foo"))
+	if err != nil {
+		t.Errorf("Unexpected error: %v", err)
+	}
+	if s.UserName() != "foo" {
+		t.Errorf("Unexpected user name: %s (want: 'foo')", s.UserName())
+	}
+}
+
+func TestNewWithToken(t *testing.T) {
+	s, err := security.New(security.WithToken("abc"))
+	if err != nil {
+		t.Errorf("Unexpected error: %v", err)
+	}
+	if s.AuthToken() != "abc" {
+		t.Errorf("Unexpected token: %s (want: 'abc')", s.AuthToken())
+	}
+}
