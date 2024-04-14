@@ -26,23 +26,29 @@ go get -U github.com/fseconomy/fseconomy-go
 
 ## Usage
 
-### Set Up the FSEconomy SDK
+### Security & Authentication API
 
 ```go
 package main
 
 import (
-	"fmt"
-	"os"
-	
-	"github.com/fseconomy/fseconomy-go/fseconomy"
+	"github.com/fseconomy/fseconomy-go/security"
+	"log"
 )
 
 func main() {
-	f, err := fseconomy.New()
+	s, err := security.New()
 	if err != nil {
-		_, _ = fmt.Fprintf(os.Stderr, `failed to create FSEconomy SDK context: %v\n`, err)
-		os.Exit(1)
+		log.Fatalf(`failed to create FSEconomy Security context: %v\n`, err)
 	}
+	
+	// login with user and password
+	err = s.Login("user", "password")
+	
+	// check if currently logged in
+	err = s.Check()
+	
+	// logout
+	err = s.Logout()
 }
 ```

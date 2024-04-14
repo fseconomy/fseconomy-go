@@ -1,4 +1,4 @@
-package fseconomy
+package core
 
 import (
 	"os"
@@ -25,7 +25,7 @@ func TestNewNoEnviron(t *testing.T) {
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	if (f.AccessKey != "") || (f.ServiceKey != "") || (f.UserKey != "") {
+	if (f.accessKey != "") || (f.serviceKey != "") || (f.userKey != "") {
 		t.Fatalf(`All keys expected to be empty strings`)
 	}
 }
@@ -38,7 +38,7 @@ func TestNewWithEnviron(t *testing.T) {
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	if (f.AccessKey != testKey) || (f.ServiceKey != testKey) || (f.UserKey != testKey) {
+	if (f.accessKey != testKey) || (f.serviceKey != testKey) || (f.userKey != testKey) {
 		t.Fatalf(`All keys expected to be %q`, testKey)
 	}
 }
@@ -49,12 +49,12 @@ func TestSetAccessKey(t *testing.T) {
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	err = SetAccessKey(f, testKey)
+	err = f.SetAccessKey(testKey)
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	if f.AccessKey != testKey {
-		t.Fatalf(`Access key expected to be %q, got %q instead`, testKey, f.AccessKey)
+	if f.accessKey != testKey {
+		t.Fatalf(`Access key expected to be %q, got %q instead`, testKey, f.accessKey)
 	}
 }
 
@@ -64,12 +64,12 @@ func TestSetServiceKey(t *testing.T) {
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	err = SetServiceKey(f, testKey)
+	err = f.SetServiceKey(testKey)
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	if f.ServiceKey != testKey {
-		t.Fatalf(`Service key expected to be %q, got %q instead`, testKey, f.ServiceKey)
+	if f.serviceKey != testKey {
+		t.Fatalf(`Service key expected to be %q, got %q instead`, testKey, f.serviceKey)
 	}
 }
 
@@ -79,11 +79,11 @@ func TestSetUserKey(t *testing.T) {
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	err = SetUserKey(f, testKey)
+	err = f.SetUserKey(testKey)
 	if err != nil {
 		t.Fatalf(`Unexpected error: %v`, err)
 	}
-	if f.UserKey != testKey {
-		t.Fatalf(`User key expected to be %q, got %q instead`, testKey, f.UserKey)
+	if f.userKey != testKey {
+		t.Fatalf(`User key expected to be %q, got %q instead`, testKey, f.userKey)
 	}
 }
