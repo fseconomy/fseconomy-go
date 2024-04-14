@@ -11,7 +11,27 @@ type Security struct {
 	secretKey []byte
 	secretIv  []byte
 	userName  string
-	userToken string
+	authToken string
+}
+
+// UserName returns the username
+func (s *Security) UserName() string {
+	return s.userName
+}
+
+// SetUserName sets the username
+func (s *Security) SetUserName(userName string) {
+	s.userName = userName
+}
+
+// AuthToken returns the FSEconomy authentication token
+func (s *Security) AuthToken() string {
+	return s.authToken
+}
+
+// SetAuthToken sets the FSEconomy authentication token
+func (s *Security) SetAuthToken(token string) {
+	s.authToken = token
 }
 
 // SetSecretKey sets the secret key (16 bytes hex string expected)
