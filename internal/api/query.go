@@ -12,14 +12,19 @@ import (
 const maintenance = "Currently Closed for Maintenance"
 
 type QueryResult struct {
-	status      int
-	contentType string
-	byteData    []byte
-	stringData  string
+	Status      int
+	ContentType string
+	ByteData    []byte
+	StringData  string
 }
 
 // RawQuery assembles and executes the http request to a service, returning a result object
 func (service *Service) RawQuery(urlParams map[string]string, formParams map[string]string, headerParams map[string]string) (*QueryResult, error) {
+
+	// validate parameters
+	if !(service.ValidateFormParams(formParams) && service.ValidateHeaderParams(headerParams) && service.ValidateUrlParams(urlParams)) {
+		return nil, exceptions.MissingParamError
+	}
 
 	// build final url from service data and url parameters
 	reqUrl, err := url.Parse(service.Api + service.Url)
@@ -74,8 +79,8 @@ func (service *Service) RawQuery(urlParams map[string]string, formParams map[str
 	// read data and populate response object
 	var result QueryResult
 	var readErr error
-	result.status = resp.StatusCode
-	result.byteData, readErr = io.ReadAll(resp.Body)
+	result.Status = resp.StatusCode
+	result.ByteData, readErr = io.ReadAll(resp.Body)
 	closeErr := resp.Body.Close()
 	if readErr != nil {
 		return nil, readErr
@@ -85,13 +90,13 @@ func (service *Service) RawQuery(urlParams map[string]string, formParams map[str
 	}
 
 	// convert string data and check for server maintenance downtime
-	result.stringData = string(result.byteData)
-	if strings.Contains(result.stringData, maintenance) {
+	result.StringData = string(result.ByteData)
+	if strings.Contains(result.StringData, maintenance) {
 		return nil, exceptions.ServerMaintenanceError
 	}
 
 	// make sure we know the content type downstream
-	result.contentType = resp.Header.Get("Content-Type")
+	result.ContentType = resp.Header.Get("Content-Type")
 
 	return &result, nil
 }
