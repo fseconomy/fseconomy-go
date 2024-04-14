@@ -19,4 +19,16 @@ var (
 
 	// ServerMaintenanceError FSEconomy server is in maintenance
 	ServerMaintenanceError = errors.New("server is in maintenance")
+
+	// MissingParamError for query
+	MissingParamError = errors.New("missing parameter for query")
+
+	// InvalidContentTypeError FSEconomy server response has unexpected content type
+	InvalidContentTypeError = errors.New("invalid content type")
+
+	// InvalidCredentialsError FSEconomy server rejected the login attempt with the given credentials
+	InvalidCredentialsError = errors.New("invalid user credentials (username, password, authtoken)")
+
+	// UserNotLoggedInError the security context doesn't hold a logged-in user
+	UserNotLoggedInError = errors.New("user not logged in")
 )
