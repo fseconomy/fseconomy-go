@@ -72,3 +72,14 @@ func TestAircraftByOwnerName(t *testing.T) {
 		t.Errorf("unexpected error getting aircraft by owner name: %v", err)
 	}
 }
+
+func TestAircraftByRegistration(t *testing.T) {
+	d, err := data.New()
+	if err != nil {
+		t.Errorf("unexpected error creating data context: %v", err)
+	}
+	_, err = d.AircraftByRegistration("D-ESTE")
+	if err != nil && !errors.Is(err, exceptions.FseDataKeyError) && !errors.Is(err, exceptions.ServerMaintenanceError) {
+		t.Errorf("unexpected error getting aircraft by registration: %v", err)
+	}
+}

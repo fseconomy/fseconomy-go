@@ -214,3 +214,27 @@ func (d *Data) AircraftByOwnerName(ownerName string) ([]*Aircraft, error) {
 	}
 	return items.Aircraft, nil
 }
+
+// AircraftByRegistration extracts data from the Aircraft By Registration data feed
+func (d *Data) AircraftByRegistration(registration string) (*Aircraft, error) {
+	keys, err := d.Keys()
+	if err != nil {
+		return nil, err
+	}
+	feed, err := data.GetDataFeed("Aircraft By Registration")
+	if err != nil {
+		return nil, err
+	}
+	resp, err := feed.QueryFeed(map[string]string{"aircraftreg": registration}, keys)
+	if err != nil {
+		return nil, err
+	}
+	var items struct {
+		Aircraft *Aircraft `xml:"Aircraft"`
+	}
+	err = xml.Unmarshal(resp.ByteData, &items)
+	if err != nil {
+		return nil, err
+	}
+	return items.Aircraft, nil
+}
