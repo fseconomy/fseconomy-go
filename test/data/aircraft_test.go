@@ -58,6 +58,17 @@ func TestAircraftByMakeModel(t *testing.T) {
 	}
 	_, err = d.AircraftByMakeModel("Cessna 172 Skyhawk")
 	if err != nil && !errors.Is(err, exceptions.FseDataKeyError) && !errors.Is(err, exceptions.ServerMaintenanceError) {
-		t.Errorf("unexpected error getting aircraft for sale: %v", err)
+		t.Errorf("unexpected error getting aircraft by make model: %v", err)
+	}
+}
+
+func TestAircraftByOwnerName(t *testing.T) {
+	d, err := data.New()
+	if err != nil {
+		t.Errorf("unexpected error creating data context: %v", err)
+	}
+	_, err = d.AircraftByOwnerName("foo")
+	if err != nil && !errors.Is(err, exceptions.FseDataKeyError) && !errors.Is(err, exceptions.ServerMaintenanceError) {
+		t.Errorf("unexpected error getting aircraft by owner name: %v", err)
 	}
 }

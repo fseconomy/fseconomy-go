@@ -167,6 +167,7 @@ func (d *Data) AircraftForSale() ([]*Aircraft, error) {
 	return items.Aircraft, nil
 }
 
+// AircraftByMakeModel extracts data from the Aircraft By MakeModel data feed
 func (d *Data) AircraftByMakeModel(makeModel string) ([]*Aircraft, error) {
 	keys, err := d.Keys()
 	if err != nil {
@@ -177,6 +178,30 @@ func (d *Data) AircraftByMakeModel(makeModel string) ([]*Aircraft, error) {
 		return nil, err
 	}
 	resp, err := feed.QueryFeed(map[string]string{"makemodel": makeModel}, keys)
+	if err != nil {
+		return nil, err
+	}
+	var items struct {
+		Aircraft []*Aircraft `xml:"Aircraft"`
+	}
+	err = xml.Unmarshal(resp.ByteData, &items)
+	if err != nil {
+		return nil, err
+	}
+	return items.Aircraft, nil
+}
+
+// AircraftByOwnerName extracts data from the Aircraft By Owner Name data feed
+func (d *Data) AircraftByOwnerName(ownerName string) ([]*Aircraft, error) {
+	keys, err := d.Keys()
+	if err != nil {
+		return nil, err
+	}
+	feed, err := data.GetDataFeed("Aircraft By Owner Name")
+	if err != nil {
+		return nil, err
+	}
+	resp, err := feed.QueryFeed(map[string]string{"ownername": ownerName}, keys)
 	if err != nil {
 		return nil, err
 	}

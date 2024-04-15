@@ -44,6 +44,12 @@ var Feeds = map[string]Feed{
 		Search:  "makemodel",
 		Params:  []string{"makemodel"},
 	},
+	"Aircraft By Owner Name": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "aircraft",
+		Search:  "ownername",
+		Params:  []string{"ownername"},
+	},
 }
 
 // GetDataFeed returns the requested data feed (or nil and an error if the
