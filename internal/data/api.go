@@ -56,6 +56,12 @@ var Feeds = map[string]Feed{
 		Search:  "registration",
 		Params:  []string{"aircraftreg"},
 	},
+	"Aircraft By Id": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "aircraft",
+		Search:  "serialnumber",
+		Params:  []string{"serialnumber"},
+	},
 }
 
 // GetDataFeed returns the requested data feed (or nil and an error if the

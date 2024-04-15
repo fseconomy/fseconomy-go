@@ -3,6 +3,7 @@ package data
 import (
 	"encoding/xml"
 	"github.com/fseconomy/fseconomy-go/internal/data"
+	"strconv"
 )
 
 // AircraftStatus represents the data provided by the Aircraft Status data feed
@@ -226,6 +227,30 @@ func (d *Data) AircraftByRegistration(registration string) (*Aircraft, error) {
 		return nil, err
 	}
 	resp, err := feed.QueryFeed(map[string]string{"aircraftreg": registration}, keys)
+	if err != nil {
+		return nil, err
+	}
+	var items struct {
+		Aircraft *Aircraft `xml:"Aircraft"`
+	}
+	err = xml.Unmarshal(resp.ByteData, &items)
+	if err != nil {
+		return nil, err
+	}
+	return items.Aircraft, nil
+}
+
+// AircraftById extracts data from the Aircraft By Id data feed
+func (d *Data) AircraftById(serialNumber int) (*Aircraft, error) {
+	keys, err := d.Keys()
+	if err != nil {
+		return nil, err
+	}
+	feed, err := data.GetDataFeed("Aircraft By Id")
+	if err != nil {
+		return nil, err
+	}
+	resp, err := feed.QueryFeed(map[string]string{"serialnumber": strconv.Itoa(serialNumber)}, keys)
 	if err != nil {
 		return nil, err
 	}
