@@ -94,3 +94,14 @@ func TestAircraftById(t *testing.T) {
 		t.Errorf("unexpected error getting aircraft by id: %v", err)
 	}
 }
+
+func TestAircraftByKey(t *testing.T) {
+	d, err := data.New()
+	if err != nil {
+		t.Errorf("unexpected error creating data context: %v", err)
+	}
+	_, err = d.AircraftByKey()
+	if err != nil && !errors.Is(err, exceptions.FseDataKeyError) && !errors.Is(err, exceptions.ServerMaintenanceError) {
+		t.Errorf("unexpected error getting aircraft by key: %v", err)
+	}
+}

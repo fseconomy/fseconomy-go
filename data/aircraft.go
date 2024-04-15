@@ -263,3 +263,27 @@ func (d *Data) AircraftById(serialNumber int) (*Aircraft, error) {
 	}
 	return items.Aircraft, nil
 }
+
+// AircraftByKey extracts data from the Aircraft By Key data feed
+func (d *Data) AircraftByKey() ([]*Aircraft, error) {
+	keys, err := d.Keys()
+	if err != nil {
+		return nil, err
+	}
+	feed, err := data.GetDataFeed("Aircraft By Key")
+	if err != nil {
+		return nil, err
+	}
+	resp, err := feed.QueryFeed(nil, keys)
+	if err != nil {
+		return nil, err
+	}
+	var items struct {
+		Aircraft []*Aircraft `xml:"Aircraft"`
+	}
+	err = xml.Unmarshal(resp.ByteData, &items)
+	if err != nil {
+		return nil, err
+	}
+	return items.Aircraft, nil
+}
