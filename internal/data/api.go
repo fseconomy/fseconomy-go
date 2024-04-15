@@ -33,6 +33,11 @@ var Feeds = map[string]Feed{
 		Query:   "aircraft",
 		Search:  "aliases",
 	},
+	"Aircraft For Sale": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "aircraft",
+		Search:  "forsale",
+	},
 }
 
 // GetDataFeed returns the requested data feed (or nil and an error if the
