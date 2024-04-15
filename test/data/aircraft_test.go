@@ -50,3 +50,14 @@ func TestAircraftForSale(t *testing.T) {
 		t.Errorf("unexpected error getting aircraft for sale: %v", err)
 	}
 }
+
+func TestAircraftByMakeModel(t *testing.T) {
+	d, err := data.New()
+	if err != nil {
+		t.Errorf("unexpected error creating data context: %v", err)
+	}
+	_, err = d.AircraftByMakeModel("Cessna 172 Skyhawk")
+	if err != nil && !errors.Is(err, exceptions.FseDataKeyError) && !errors.Is(err, exceptions.ServerMaintenanceError) {
+		t.Errorf("unexpected error getting aircraft for sale: %v", err)
+	}
+}

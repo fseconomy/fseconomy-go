@@ -67,6 +67,7 @@ type Aircraft struct {
 	EngineTime    string  `xml:"EngineTime"`
 	TimeLast100hr string  `xml:"TimeLast100hr"`
 	LeasedFrom    string  `xml:"LeasedFrom"`
+	MonthlyFee    float64 `xml:"MonthlyFee"`
 	FeeOwed       float64 `xml:"FeeOwed"`
 }
 
@@ -153,6 +154,29 @@ func (d *Data) AircraftForSale() ([]*Aircraft, error) {
 		return nil, err
 	}
 	resp, err := feed.QueryFeed(nil, keys)
+	if err != nil {
+		return nil, err
+	}
+	var items struct {
+		Aircraft []*Aircraft `xml:"Aircraft"`
+	}
+	err = xml.Unmarshal(resp.ByteData, &items)
+	if err != nil {
+		return nil, err
+	}
+	return items.Aircraft, nil
+}
+
+func (d *Data) AircraftByMakeModel(makeModel string) ([]*Aircraft, error) {
+	keys, err := d.Keys()
+	if err != nil {
+		return nil, err
+	}
+	feed, err := data.GetDataFeed("Aircraft By MakeModel")
+	if err != nil {
+		return nil, err
+	}
+	resp, err := feed.QueryFeed(map[string]string{"makemodel": makeModel}, keys)
 	if err != nil {
 		return nil, err
 	}
