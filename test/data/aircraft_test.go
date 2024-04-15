@@ -19,11 +19,22 @@ func TestAircraftStatusByRegistration(t *testing.T) {
 }
 
 func TestAircraftConfigs(t *testing.T) {
-	d, err := data.New(data.WithUserKey("0015D19A457E2FCD"))
+	d, err := data.New()
 	if err != nil {
 		t.Errorf("unexpected error creating data context: %v", err)
 	}
 	_, err = d.AircraftConfigs()
+	if err != nil && !errors.Is(err, exceptions.FseDataKeyError) {
+		t.Errorf("unexpected error getting aircraft configs: %v", err)
+	}
+}
+
+func TestAircraftAliases(t *testing.T) {
+	d, err := data.New()
+	if err != nil {
+		t.Errorf("unexpected error creating data context: %v", err)
+	}
+	_, err = d.AircraftAliases()
 	if err != nil && !errors.Is(err, exceptions.FseDataKeyError) {
 		t.Errorf("unexpected error getting aircraft configs: %v", err)
 	}

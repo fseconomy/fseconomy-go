@@ -39,6 +39,11 @@ type AircraftConfig struct {
 	MaxCargo    int64   `xml:"MaxCargo"`
 }
 
+type AircraftAlias struct {
+	MakeModel string   `xml:"MakeModel"`
+	Alias     []string `xml:"Alias"`
+}
+
 // AircraftStatusByRegistration extracts data from the Aircraft Status By Registration data feed
 func (d *Data) AircraftStatusByRegistration(registration string) (*AircraftStatus, error) {
 	keys, err := d.Keys()
@@ -85,4 +90,28 @@ func (d *Data) AircraftConfigs() ([]*AircraftConfig, error) {
 		return nil, err
 	}
 	return items.Config, nil
+}
+
+// AircraftAliases extracts data from the Aircraft Aliases data feed
+func (d *Data) AircraftAliases() ([]*AircraftAlias, error) {
+	keys, err := d.Keys()
+	if err != nil {
+		return nil, err
+	}
+	feed, err := data.GetDataFeed("Aircraft Aliases")
+	if err != nil {
+		return nil, err
+	}
+	resp, err := feed.QueryFeed(nil, keys)
+	if err != nil {
+		return nil, err
+	}
+	var items struct {
+		Alias []*AircraftAlias `xml:"AircraftAliases"`
+	}
+	err = xml.Unmarshal(resp.ByteData, &items)
+	if err != nil {
+		return nil, err
+	}
+	return items.Alias, nil
 }
