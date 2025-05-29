@@ -14,6 +14,6 @@ func TestCommoditiesByKey(t *testing.T) {
 	}
 	_, err = d.CommoditiesByKey()
 	if err != nil && !errors.Is(err, exceptions.FseDataKeyError) && !errors.Is(err, exceptions.ServerMaintenanceError) {
-		t.Errorf("unexpected error getting assignments by key: %v", err)
+		t.Errorf("unexpected error getting commodities by key: %v", err)
 	}
 }
