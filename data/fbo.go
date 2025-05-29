@@ -12,7 +12,7 @@ type Facility struct {
 	Location       string        `xml:"Location"`
 	Carrier        string        `xml:"Carrier"`
 	CommodityNames string        `xml:"CommodityNames"`
-	Gates          int           `xml:"Gates"`
+	Gates          int64         `xml:"Gates"`
 	JobsPublic     types.FseBool `xml:"JobsPublic"`
 	Destinations   string        `xml:"Destinations"`
 	Fbo            string        `xml:"Fbo"`
@@ -20,26 +20,26 @@ type Facility struct {
 }
 
 type Fbo struct {
-	FboId             int           `xml:"FboId"`
+	FboId             int64         `xml:"FboId"`
 	Status            string        `xml:"Status"`
 	Airport           string        `xml:"Airport"`
 	Name              string        `xml:"Name"`
 	Owner             string        `xml:"Owner"`
 	Icao              string        `xml:"Icao"`
 	Location          string        `xml:"Location"`
-	Lots              int           `xml:"Lots"`
+	Lots              int64         `xml:"Lots"`
 	RepairShop        types.FseBool `xml:"RepairShop"`
-	Gates             int           `xml:"Gates"`
-	GatesRented       int           `xml:"GatesRented"`
-	Fuel100LL         int           `xml:"Fuel100LL"`
-	FuelJetA          int           `xml:"FuelJetA"`
-	BuildingMaterials int           `xml:"BuildingMaterials"`
-	Supplies          int           `xml:"Supplies"`
-	SuppliesPerDay    int           `xml:"SuppliesPerDay"`
-	SuppliedDays      int           `xml:"SuppliedDays"`
+	Gates             int64         `xml:"Gates"`
+	GatesRented       int64         `xml:"GatesRented"`
+	Fuel100LL         int64         `xml:"Fuel100LL"`
+	FuelJetA          int64         `xml:"FuelJetA"`
+	BuildingMaterials int64         `xml:"BuildingMaterials"`
+	Supplies          int64         `xml:"Supplies"`
+	SuppliesPerDay    int64         `xml:"SuppliesPerDay"`
+	SuppliedDays      int64         `xml:"SuppliedDays"`
 	SellPrice         float64       `xml:"SellPrice"`
-	Fuel100LLGal      int           `xml:"Fuel100LLGal"`
-	FuelJetAGal       int           `xml:"FuelJetAGal"`
+	Fuel100LLGal      int64         `xml:"Fuel100LLGal"`
+	FuelJetAGal       int64         `xml:"FuelJetAGal"`
 	Price100LLGal     float64       `xml:"Price100LLGal"`
 	PriceJetAGal      float64       `xml:"PriceJetAGal"`
 }
@@ -47,8 +47,8 @@ type Fbo struct {
 type FboMonthlySummary struct {
 	Owner                             string  `xml:"Owner"`
 	Icao                              string  `xml:"ICAO"`
-	Month                             int     `xml:"Month"`
-	Year                              int     `xml:"Year"`
+	Month                             int64   `xml:"Month"`
+	Year                              int64   `xml:"Year"`
 	AssignmentRentalExpenses          float64 `xml:"Assignment_Rental_Expenses"`
 	AssignmentIncome                  float64 `xml:"Assignment_Income"`
 	AssignmentExpenses                float64 `xml:"Assignment_Expenses"`
@@ -86,8 +86,8 @@ type FboMonthlySummary struct {
 	GroupPayments                     float64 `xml:"Group_Payments"`
 	GroupDeletion                     float64 `xml:"Group_Deletion"`
 	NetTotal                          float64 `xml:"Net_Total"`
-	CurrentOps                        int     `xml:"Current_Ops"`
-	AvgOps                            int     `xml:"Avg_Ops"`
+	CurrentOps                        int64   `xml:"Current_Ops"`
+	AvgOps                            int64   `xml:"Avg_Ops"`
 }
 
 // FacilitiesByKey extracts data from the Facilities By Key data feed

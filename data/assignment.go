@@ -8,13 +8,13 @@ import (
 
 type Assignment struct {
 	XMLName        xml.Name                `xml:"Assignment"`
-	Id             int                     `xml:"Id"`
+	Id             int64                   `xml:"Id"`
 	Status         string                  `xml:"Status"`
 	Location       string                  `xml:"Location"`
 	From           string                  `xml:"From"`
 	Destination    string                  `xml:"Destination"`
 	AssignmentText string                  `xml:"Assignment"`
-	Amount         int                     `xml:"Amount"`
+	Amount         int64                   `xml:"Amount"`
 	Units          string                  `xml:"Units"`
 	Pay            float64                 `xml:"Pay"`
 	PilotFee       float64                 `xml:"PilotFee"`

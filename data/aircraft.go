@@ -9,7 +9,7 @@ import (
 
 // AircraftStatus represents the data provided by the Aircraft Status data feed
 type AircraftStatus struct {
-	SerialNumber int    `xml:"SerialNumber"`
+	SerialNumber int64  `xml:"SerialNumber"`
 	Status       string `xml:"Status"`
 	Location     string `xml:"Location"`
 }
