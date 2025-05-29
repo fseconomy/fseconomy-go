@@ -3,6 +3,7 @@ package data
 import (
 	"encoding/xml"
 	"github.com/fseconomy/fseconomy-go/internal/data"
+	"github.com/fseconomy/fseconomy-go/types"
 	"strconv"
 )
 
@@ -46,30 +47,30 @@ type AircraftAlias struct {
 }
 
 type Aircraft struct {
-	SerialNumber  int64   `xml:"SerialNumber"`
-	MakeModel     string  `xml:"MakeModel"`
-	Registration  string  `xml:"Registration"`
-	Owner         string  `xml:"Owner"`
-	Location      string  `xml:"Location"`
-	LocationName  string  `xml:"LocationName"`
-	Home          string  `xml:"Home"`
-	SalePrice     float64 `xml:"SalePrice"`
-	SellbackPrice float64 `xml:"SellbackPrice"`
-	Equipment     string  `xml:"Equipment"`
-	RentalDry     float64 `xml:"RentalDry"`
-	RentalWet     float64 `xml:"RentalWet"`
-	RentalType    string  `xml:"RentalType"`
-	Bonus         int64   `xml:"Bonus"`
-	RentalTime    int64   `xml:"RentalTime"`
-	RentedBy      string  `xml:"RentedBy"`
-	FuelPct       float64 `xml:"FuelPct"`
-	NeedsRepair   bool    `xml:"NeedsRepair"`
-	AirframeTime  string  `xml:"AirframeTime"`
-	EngineTime    string  `xml:"EngineTime"`
-	TimeLast100hr string  `xml:"TimeLast100hr"`
-	LeasedFrom    string  `xml:"LeasedFrom"`
-	MonthlyFee    float64 `xml:"MonthlyFee"`
-	FeeOwed       float64 `xml:"FeeOwed"`
+	SerialNumber  int64              `xml:"SerialNumber"`
+	MakeModel     string             `xml:"MakeModel"`
+	Registration  string             `xml:"Registration"`
+	Owner         string             `xml:"Owner"`
+	Location      string             `xml:"Location"`
+	LocationName  string             `xml:"LocationName"`
+	Home          string             `xml:"Home"`
+	SalePrice     float64            `xml:"SalePrice"`
+	SellbackPrice float64            `xml:"SellbackPrice"`
+	Equipment     string             `xml:"Equipment"`
+	RentalDry     float64            `xml:"RentalDry"`
+	RentalWet     float64            `xml:"RentalWet"`
+	RentalType    string             `xml:"RentalType"`
+	Bonus         int64              `xml:"Bonus"`
+	RentalTime    int64              `xml:"RentalTime"`
+	RentedBy      string             `xml:"RentedBy"`
+	FuelPct       float64            `xml:"FuelPct"`
+	NeedsRepair   bool               `xml:"NeedsRepair"`
+	AirframeTime  types.FseHobbsTime `xml:"AirframeTime"`
+	EngineTime    types.FseHobbsTime `xml:"EngineTime"`
+	TimeLast100hr types.FseHobbsTime `xml:"TimeLast100hr"`
+	LeasedFrom    string             `xml:"LeasedFrom"`
+	MonthlyFee    float64            `xml:"MonthlyFee"`
+	FeeOwed       float64            `xml:"FeeOwed"`
 }
 
 // AircraftStatusByRegistration extracts data from the Aircraft Status By Registration data feed
