@@ -15,8 +15,8 @@ func TestFseCommodityAmount_UnmarshalXML(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to unmarshal: %v", err)
 	}
-	expected := 123
-	if int(parsed.Amount) != expected {
+	var expected int64 = 123
+	if int64(parsed.Amount) != expected {
 		t.Errorf("Expected %d, got %d", expected, parsed.Amount)
 	}
 }

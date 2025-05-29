@@ -8,8 +8,8 @@ import (
 )
 
 // FseCommodityAmount represents commodity amounts provided as "x kg",
-// internally stored as int (e.g. "512 kg" → 512).
-type FseCommodityAmount int
+// internally stored as int64 (e.g. "512 kg" → 512).
+type FseCommodityAmount int64
 
 // UnmarshalXML parses a commodity amount string in the format "n kg" into an int.
 func (t *FseCommodityAmount) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
@@ -33,7 +33,7 @@ func (t *FseCommodityAmount) UnmarshalXML(d *xml.Decoder, start xml.StartElement
 		return fmt.Errorf("invalid amount format: %q (expected n kg)", value)
 	}
 
-	amount, err := strconv.Atoi(parts[0])
+	amount, err := strconv.ParseInt(parts[0], 10, 64)
 	if err != nil {
 		return fmt.Errorf("invalid amount in commodity amount format '%s': %w", value, err)
 	}
