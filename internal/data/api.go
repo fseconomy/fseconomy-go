@@ -98,6 +98,48 @@ var Feeds = map[string]Feed{
 		Search:  "monthlysummary",
 		Params:  []string{"month", "year", "icao"},
 	},
+	"Flight Logs By Key Month Year": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "flightlogs",
+		Search:  "monthyear",
+		Params:  []string{"month", "year"},
+	},
+	"Flight Logs By Reg Month Year": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "flightlogs",
+		Search:  "monthyear",
+		Params:  []string{"aircraftreg", "month", "year"},
+	},
+	"Flight Logs By serialnumber Month Year": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "flightlogs",
+		Search:  "monthyear",
+		Params:  []string{"serialnumber", "month", "year"},
+	},
+	"Flight Logs By Key From Id": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "flightlogs",
+		Search:  "id",
+		Params:  []string{"fromid"},
+	},
+	"Flight Logs By Key From Id for ALL group aircraft": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "flightlogs",
+		Search:  "id",
+		Params:  []string{"fromid", "type"},
+	},
+	"Flight Logs By Reg From Id": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "flightlogs",
+		Search:  "id",
+		Params:  []string{"aircraftreg", "fromid"},
+	},
+	"Flight Logs By serialnumber From Id": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "flightlogs",
+		Search:  "id",
+		Params:  []string{"serialnumber", "fromid"},
+	},
 }
 
 // GetDataFeed returns the requested data feed (or nil and an error if the

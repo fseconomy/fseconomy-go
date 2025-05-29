@@ -242,7 +242,7 @@ func (d *Data) AircraftByRegistration(registration string) (*Aircraft, error) {
 }
 
 // AircraftById extracts data from the Aircraft By Id data feed
-func (d *Data) AircraftById(serialNumber int) (*Aircraft, error) {
+func (d *Data) AircraftById(serialNumber int64) (*Aircraft, error) {
 	keys, err := d.Keys()
 	if err != nil {
 		return nil, err
@@ -251,7 +251,7 @@ func (d *Data) AircraftById(serialNumber int) (*Aircraft, error) {
 	if err != nil {
 		return nil, err
 	}
-	resp, err := feed.QueryFeed(map[string]string{"serialnumber": strconv.Itoa(serialNumber)}, keys)
+	resp, err := feed.QueryFeed(map[string]string{"serialnumber": strconv.FormatInt(serialNumber, 10)}, keys)
 	if err != nil {
 		return nil, err
 	}
