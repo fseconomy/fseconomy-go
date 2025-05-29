@@ -21,7 +21,7 @@ type AircraftConfig struct {
 	CruiseSpeed int64   `xml:"CruiseSpeed"`
 	GPH         int64   `xml:"GPH"`
 	FuelType    int64   `xml:"FuelType"`
-	MTOW        int64   `xml:"MTOW"`
+	Mtow        int64   `xml:"MTOW"`
 	EmptyWeight int64   `xml:"EmptyWeight"`
 	Price       float64 `xml:"Price"`
 	Ext1        int64   `xml:"Ext1"`
