@@ -2,7 +2,6 @@ package types
 
 import (
 	"encoding/xml"
-	"log"
 	"strings"
 	"testing"
 	"time"
@@ -17,7 +16,6 @@ func TestFseHobbsTime_UnmarshalXML(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to unmarshal: %v", err)
 	}
-	log.Printf("FseHobbsTime UnmarshalXML: %v", parsed)
 	expected := 12.5
 	if float64(parsed.AirframeTime) != expected {
 		t.Errorf("Expected %.2f, got %.2f", expected, parsed.AirframeTime)
