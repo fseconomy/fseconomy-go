@@ -77,6 +77,27 @@ var Feeds = map[string]Feed{
 		Query:   "commodities",
 		Search:  "key",
 	},
+	"Facilities By Key": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "facilities",
+		Search:  "key",
+	},
+	"FBOs By Key": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "fbos",
+		Search:  "key",
+	},
+	"FBOs For Sale": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "fbos",
+		Search:  "forsale",
+	},
+	"FBO Monthly Summary By ICAO": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "fbos",
+		Search:  "monthlysummary",
+		Params:  []string{"month", "year", "icao"},
+	},
 }
 
 // GetDataFeed returns the requested data feed (or nil and an error if the
