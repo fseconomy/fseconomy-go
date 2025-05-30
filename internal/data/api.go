@@ -145,6 +145,30 @@ var Feeds = map[string]Feed{
 		Query:   "group",
 		Search:  "members",
 	},
+	"ICAO Listing of Aircraft": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "icao",
+		Search:  "aircraft",
+		Params:  []string{"icao"},
+	},
+	"ICAO Listing of FBOs": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "icao",
+		Search:  "fbo",
+		Params:  []string{"icao"},
+	},
+	"ICAO Jobs To": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "icao",
+		Search:  "jobsto",
+		Params:  []string{"icaos"},
+	},
+	"ICAO Jobs From": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "icao",
+		Search:  "jobsfrom",
+		Params:  []string{"icaos"},
+	},
 }
 
 // GetDataFeed returns the requested data feed (or nil and an error if the
