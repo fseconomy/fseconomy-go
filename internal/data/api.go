@@ -140,6 +140,11 @@ var Feeds = map[string]Feed{
 		Search:  "id",
 		Params:  []string{"serialnumber", "fromid"},
 	},
+	"Group Members": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "group",
+		Search:  "members",
+	},
 }
 
 // GetDataFeed returns the requested data feed (or nil and an error if the
