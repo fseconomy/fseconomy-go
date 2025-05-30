@@ -181,6 +181,11 @@ var Feeds = map[string]Feed{
 		Search:  "id",
 		Params:  []string{"fromid"},
 	},
+	"Statistics By Key": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "statistics",
+		Search:  "key",
+	},
 }
 
 // GetDataFeed returns the requested data feed (or nil and an error if the
