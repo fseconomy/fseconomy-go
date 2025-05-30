@@ -6,6 +6,7 @@ import (
 )
 
 const FeedApi string = "https://server.fseconomy.net/data"
+const AirportApi string = "https://server.fseconomy.net/static/airports.csv"
 
 // A Feed is a service driver for one of FSEconomy's data feeds
 type Feed struct {
@@ -185,6 +186,11 @@ var Feeds = map[string]Feed{
 		Service: api.Service{Api: FeedApi, Method: "GET"},
 		Query:   "statistics",
 		Search:  "key",
+	},
+	"Airports": {
+		Service: api.Service{Api: AirportApi, Method: "GET"},
+		Query:   "",
+		Search:  "",
 	},
 }
 

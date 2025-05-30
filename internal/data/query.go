@@ -34,3 +34,14 @@ func (d *Feed) QueryFeed(params map[string]string, keys map[string]string) (*api
 	}
 	return resp, nil
 }
+
+func (d *Feed) QueryCsv() (*api.QueryResult, error) {
+	resp, err := d.RawQuery(nil, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	if resp.Status != 200 {
+		return nil, exceptions.ServerStatusError
+	}
+	return resp, nil
+}
