@@ -26,7 +26,7 @@ func (t *FseString) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	}
 	check := strings.ToUpper(value)
 	switch check {
-	case "NIL", "NULL", "VOID":
+	case "NIL", "NULL", "VOID", "N/A":
 		*t = FseString("")
 	default:
 		*t = FseString(value)
