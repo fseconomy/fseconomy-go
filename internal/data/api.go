@@ -169,6 +169,18 @@ var Feeds = map[string]Feed{
 		Search:  "jobsfrom",
 		Params:  []string{"icaos"},
 	},
+	"Payments By Month Year": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "payments",
+		Search:  "monthyear",
+		Params:  []string{"month", "year"},
+	},
+	"Payments From Id": {
+		Service: api.Service{Api: FeedApi, Method: "GET"},
+		Query:   "payments",
+		Search:  "id",
+		Params:  []string{"fromid"},
+	},
 }
 
 // GetDataFeed returns the requested data feed (or nil and an error if the
